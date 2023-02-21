@@ -4,6 +4,8 @@ import streamlit as st
 import re
 import nltk
 from nltk import word_tokenize
+import spacy
+nlp = spacy.load("en_core_web_sm")
 
 file_path = 'raw_text_file.csv'
 
@@ -102,8 +104,24 @@ st.markdown("Please find GitHub repository link of project: [Click Here](https:/
 # text input from user
 text_input = st.text_input("Enter the sample record of tweet", "A sample tweet")
 
+ndf = read_csv(file_path)
 
-# pos display
+# take input between maximum number of rows of dataframe
+select_num = st.number_input("Select number of first rows to choose for Named entity display",
+                             min_value=10, max_value=16000)
+
+
+# NER display
+def ner_df(n):
+    # identify the text object
+    doc = nlp(",".join([te for te in ndf['cleaned_text'][0:n]]))
+
+    ner_list = [(x.text,x.label_) for x in doc.ents]
+    
+    ner_df = pd.DataFrame(ner_list, columns=['Word','Entity identification'])
+    return ner_df
+
+# functions display display
 def main():
     text = text_cleaning(text_input)
     tags = sentense_pos_tagger(text)
@@ -111,12 +129,16 @@ def main():
     # display dataframe
     st.dataframe(df)
     
+    # NER run
+    new_df = ner_df(select_num)
+    st.dataframe(new_df)
+        
 if __name__ == '__main__':
     main()
 
-# NER display
 
-
+    
+    
 # topic modeling display
 
 
