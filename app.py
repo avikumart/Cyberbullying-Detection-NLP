@@ -16,6 +16,8 @@ from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 from nltk.stem.porter import PorterStemmer
 import joblib
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 file_path = 'raw_text_file.csv'
 
@@ -216,6 +218,7 @@ def preprocess_topic(df, topic):
     return corpus
 
 
+stops = set(stopwords.words('english'))
 # text correction function for modeling
 def correct_text(text, stem=False, lemma=False, spell=False):
     if lemma and stem:
@@ -272,13 +275,16 @@ def main():
     tags = sentense_pos_tagger(text)
     df = pd.DataFrame(tags, columns=['word','tag'])
     # display dataframe
+    st.write("Parts of speech dataframe")
     st.dataframe(df)
     
     # NER run
     new_df = ner_df(select_num)
+    st.write("Named entity recognition in text corpus")
     st.dataframe(new_df)
     
     # topic display
+    st.write("Identified topics in text corpus")
     st.dataframe(pd.DataFrame(lda_model.show_topics()))
     
     # model inference
@@ -289,7 +295,7 @@ def main():
     vect_text = tfidf.transform(correct_text)
     arr = vect_text.toarray()[0].reshape(1,-1)
     prediction = model.predict(arr)
-    st.write(f"Prediction is: {prediction}")
+    st.write(f"Sentiment prediction of given text is: {prediction}")
         
 if __name__ == '__main__':
     main()
