@@ -5,7 +5,7 @@ import re
 import nltk
 from nltk import word_tokenize
 import spacy
-nlp = spacy.load("Models\en_core_web_sm")
+nlp = spacy.load("en_core_web_sm")
 from textblob import TextBlob
 
 import gensim
