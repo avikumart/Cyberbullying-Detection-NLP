@@ -9,7 +9,7 @@ nlp = spacy.load("en_core_web_sm")
 from textblob import TextBlob
 
 import gensim
-import pyLDAvis.gensim
+# import pyLDAvis.gensim
 from gensim.models import word2vec
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
