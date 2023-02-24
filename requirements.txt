@@ -6,7 +6,7 @@ cachetools==5.3.0
 catalogue==2.0.8
 certifi==2022.12.7
 charset-normalizer==3.0.1
-click==7.1.2
+click
 colorama==0.4.6
 confection==0.0.4
 cymem==2.0.7
@@ -61,7 +61,7 @@ toml==0.10.2
 toolz==0.12.0
 tornado==6.2
 tqdm==4.64.1
-typer==0.3.2
+typer
 typing_extensions==4.5.0
 tzdata==2022.7
 tzlocal==4.2
