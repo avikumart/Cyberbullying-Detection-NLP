@@ -4,8 +4,8 @@ import streamlit as st
 import re
 import nltk
 from nltk import word_tokenize
-import spacy
-nlp = spacy.load("en_core_web_sm")
+#import spacy
+#nlp = spacy.load("en_core_web_sm")
 from textblob import TextBlob
 
 import gensim
@@ -120,8 +120,8 @@ text_input = st.text_input("Enter the sample record of tweet", "A sample tweet t
 ndf = read_csv(file_path)
 
 # take input between maximum number of rows of dataframe
-select_num = st.number_input("Select number of first rows to choose for Named entity display",
-                             min_value=10, max_value=16000)
+# select_num = st.number_input("Select number of first rows to choose for Named entity display",
+#                              min_value=10, max_value=16000)
 
 
 # take input of topic from users
@@ -130,14 +130,14 @@ topic = st.selectbox("Select topics from below options",
 
 
 # NER display
-def ner_df(n):
-    # identify the text object
-    doc = nlp(",".join([te for te in ndf['cleaned_text'][0:n]]))
+# def ner_df(n):
+#     # identify the text object
+#     doc = nlp(",".join([te for te in ndf['cleaned_text'][0:n]]))
 
-    ner_list = [(x.text,x.label_) for x in doc.ents]
+#     ner_list = [(x.text,x.label_) for x in doc.ents]
     
-    ner_df = pd.DataFrame(ner_list, columns=['Word','Entity identification'])
-    return ner_df
+#     ner_df = pd.DataFrame(ner_list, columns=['Word','Entity identification'])
+#     return ner_df
 
 # helper functions
 stopwrds = set(stopwords.words('english'))
@@ -279,9 +279,9 @@ def main():
     st.dataframe(df)
     
     # NER run
-    new_df = ner_df(select_num)
-    st.write("Named entity recognition in text corpus")
-    st.dataframe(new_df)
+    # new_df = ner_df(select_num)
+    # st.write("Named entity recognition in text corpus")
+    # st.dataframe(new_df)
     
     # topic display
     st.write("Identified topics in text corpus")
