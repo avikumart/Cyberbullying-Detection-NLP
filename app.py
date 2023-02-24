@@ -18,6 +18,8 @@ from nltk.stem.porter import PorterStemmer
 import joblib
 nltk.download('stopwords')
 nltk.download('wordnet')
+nltk.download('words')
+nltk.download('omw-1.4')
 
 file_path = 'raw_text_file.csv'
 
