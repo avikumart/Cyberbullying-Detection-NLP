@@ -145,7 +145,7 @@ topic = st.selectbox("Select topics from below options",
 stopwrds = set(stopwords.words('english'))
 def remove_stowords(text, cores=2):
     
-    sample = text
+    sample = str(text)
     sample = sample.lower()
     sample = [word for word in sample.split() if not word in stopwrds]
     sample = ' '.join(sample)
