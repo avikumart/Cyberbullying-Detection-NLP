@@ -10,6 +10,10 @@ This dataset is a collection of datasets from different sources related to the a
 You are provided with twitter_parsed_tweets: you have to perform a step-by-step NLP approach to identify the toxicity of the tweet, and classify the tweet in a binary value. 
 - The target variable is `oh-label` and the evaluation metric is `F1-score.`
 
+### Web application
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://cyberbullying-detection.streamlit.app/)
+
 ### **Steps taken to solve the problem**
 
 1. Data loading and understanding to identify statistical properties of the dataset
