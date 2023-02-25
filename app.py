@@ -287,7 +287,7 @@ def main():
     
     # topic display
     st.write("Identified topics in text corpus")
-    st.dataframe(pd.DataFrame(lda_model.show_topics()))
+    st.dataframe(pd.DataFrame(lda_model.print_topics()))
     
     # model inference
     correct_txt = correct_text(text)
