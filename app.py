@@ -185,12 +185,11 @@ ps = PorterStemmer()
 
 # show topic models
 def topic_model(topic):
-    global model
     if topic == 'none':
         model = gensim.models.LdaModel.load('./Models/none_lda.model')
     elif topic == 'racism':
         model = gensim.models.LdaModel.load('./Models/racism_lda.model')
-    elif topic == 'saxism':
+    else:
         model = gensim.models.LdaModel.load('./Models/sexism_lda.model')
     return model
     
