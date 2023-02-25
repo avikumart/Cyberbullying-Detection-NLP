@@ -185,6 +185,7 @@ ps = PorterStemmer()
 
 # show topic models
 def topic_model(topic):
+    global topic
     if topic == 'none':
         model = gensim.models.LdaModel.load('./Models/none_lda.model')
     elif topic == 'racism':
@@ -247,7 +248,8 @@ def main():
     # topic display
     st.write("Identified topics in text corpus")
     model = topic_model(topic)
-    st.dataframe(pd.DataFrame(model.print_topics()))
+    if model != None:
+        st.dataframe(pd.DataFrame(model.print_topics()))
     
     # model inference
     correct_txt = correct_text(text)
