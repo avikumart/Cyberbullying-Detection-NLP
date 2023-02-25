@@ -119,7 +119,7 @@ The target variable is `oh-label` and the evaluation metric is `F1-score`.
 st.markdown("Please find GitHub repository link of project: [Click Here](https://github.com/avikumart/Cyberbullying-Detection-NLP)")
 
 # text input from user
-text_input = st.text_input("Enter the sample record of tweet", "A sample tweet text, A tweet to be entered")
+text_input = st.text_input("Enter the sample record of tweet for sentiment analysis", "A sample tweet text, A tweet to be entered")
 
 # dataframe
 ndf = read_csv(file_path)
@@ -235,7 +235,7 @@ def main():
     tags = sentense_pos_tagger(text)
     df = pd.DataFrame(tags, columns=['word','tag'])
     # display dataframe
-    st.write("Parts of speech dataframe")
+    st.write("Parts of speech of given text input")
     st.dataframe(df)
     
     # NER run
@@ -245,6 +245,7 @@ def main():
     
     # topic display
     st.write("Identified topics in text corpus")
+    model = topic_model(topic)
     st.dataframe(pd.DataFrame(model.print_topics()))
     
     # model inference
