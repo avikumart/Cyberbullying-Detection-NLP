@@ -21,6 +21,8 @@ nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('words')
 nltk.download('omw-1.4')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
 
 file_path = 'raw_text_file.csv'
 
@@ -117,7 +119,7 @@ The target variable is `oh-label` and the evaluation metric is `F1-score`.
 st.markdown("Please find GitHub repository link of project: [Click Here](https://github.com/avikumart/Cyberbullying-Detection-NLP)")
 
 # text input from user
-text_input = st.text_input("Enter the sample record of tweet", "A sample tweet text")
+text_input = st.text_input("Enter the sample record of tweet", "A sample tweet text, A tweet to be entered")
 
 # dataframe
 ndf = read_csv(file_path)
