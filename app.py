@@ -8,6 +8,7 @@ from nltk import word_tokenize
 #nlp = spacy.load("en_core_web_sm")
 from textblob import TextBlob
 import string
+import sklearn
 
 import gensim
 # import pyLDAvis.gensim

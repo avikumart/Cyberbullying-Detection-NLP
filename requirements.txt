@@ -72,3 +72,4 @@ watchdog==2.2.1
 zipp==3.13.0
 textblob
 gensim
+scikit-learn
