@@ -121,10 +121,6 @@ text_input = st.text_input("Enter the sample record of tweet", "A sample tweet t
 # dataframe
 ndf = read_csv(file_path)
 
-# take input between maximum number of rows of dataframe
-# select_num = st.number_input("Select number of first rows to choose for Named entity display",
-#                              min_value=10, max_value=16000)
-
 
 # take input of topic from users
 topic = st.selectbox("Select topics from below options",
@@ -183,42 +179,16 @@ def get_wordnet_pos(word):
 # porter stemmer object
 ps = PorterStemmer()
 
-# topic modeling function
-def preprocess_topic(df, topic):
-    """ Preprocessing function to model text data based on give topics.
-    
-    args:
-    df = input dataframe
-    topic = input topic "nonn", "sexism", or "racism"
-    
-    returns:
-    corpus of words under given topic
-    """
-    corpus=[]
-    # topic wise division
+# show topic models
+def topic_model(topic):
     if topic == 'none':
-        for doc in ndf[ndf['Annotation'] == 'none']['cleaned_text']:
-            stop_word_removal = remove_stowords(doc)
-            lemmmatized_sample = lemma_clean_text(stop_word_removal)
-            words = lemmmatized_sample.split()
-            corpus.append(words)
-            
-    elif topic == 'sexism':
-        for doc in ndf[ndf['Annotation'] == 'sexism']['cleaned_text']:
-            stop_word_removal = remove_stowords(doc)
-            lemmmatized_sample = lemma_clean_text(stop_word_removal)
-            words = lemmmatized_sample.split()
-            corpus.append(words)
-                
+        model = gensim.models.LdaModel.load('Models\none_lda.model')
     elif topic == 'racism':
-        for doc in ndf[ndf['Annotation'] == 'racism']['cleaned_text']:
-            stop_word_removal = remove_stowords(doc)
-            lemmmatized_sample = lemma_clean_text(stop_word_removal)
-            words = lemmmatized_sample.split()
-            corpus.append(words) 
-            
-    return corpus
-
+        model = gensim.models.LdaModel.load('Models\'racism_lda.model')
+    elif topic == 'saxism':
+        model = gensim.models.LdaModel.load('Models\sexism_lda.model')
+    return model
+    
 
 stops = set(stopwords.words('english'))
 # text correction function for modeling
@@ -228,7 +198,6 @@ def correct_text(text, stem=False, lemma=False, spell=False):
         return text
     
     sample = text
-    
     #removing stopwords
     sample = sample.lower()
     sample = [word for word in sample.split() if word not in stops]
@@ -257,20 +226,6 @@ def correct_text(text, stem=False, lemma=False, spell=False):
     return sample
 
 
-# corpus of the words
-corpus = preprocess_topic(ndf, topic)
-
-# creat BOW model from corpus
-dic=gensim.corpora.Dictionary(corpus)
-bow_corpus = [dic.doc2bow(doc) for doc in corpus]
-
-# create LDA model using gensim library
-lda_model = gensim.models.LdaMulticore(bow_corpus,
-                                   num_topics = 4,
-                                   id2word = dic,
-                                   passes = 10,
-                                   workers = 2)
-
 # functions display display
 def main():
     text = text_cleaning(text_input)
@@ -287,17 +242,21 @@ def main():
     
     # topic display
     st.write("Identified topics in text corpus")
-    st.dataframe(pd.DataFrame(lda_model.print_topics()))
+    st.dataframe(pd.DataFrame(model.print_topics()))
     
     # model inference
     correct_txt = correct_text(text)
     tfidf = joblib.load('Models\tfidf_vectorizer.joblib')
     model = joblib.load('Models\text_clf_model.joblib')
     
-    vect_text = tfidf.transform(correct_text)
+    vect_text = tfidf.transform(correct_txt)
     arr = vect_text.toarray()[0].reshape(1,-1)
     prediction = model.predict(arr)
-    st.write(f"Sentiment prediction of given text is: {prediction}")
+    
+    if prediction[0] == float(0.0):
+        st.write(f"Sentiment prediction of given text is NEGATIVE")
+    else:
+        st.write(f"Sentiment prediction of given text is POSITIVE")
         
 if __name__ == '__main__':
     main()
