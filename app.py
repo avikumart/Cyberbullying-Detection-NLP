@@ -254,7 +254,7 @@ def main():
     tfidf = joblib.load('./Models/tfidf_vectorizer.joblib')
     model = joblib.load('./Models/text_clf_model.joblib')
     
-    vect_text = tfidf.transform(correct_txt)
+    vect_text = tfidf.transform([correct_txt])
     arr = vect_text.toarray()[0].reshape(1,-1)
     prediction = model.predict(arr)
     
