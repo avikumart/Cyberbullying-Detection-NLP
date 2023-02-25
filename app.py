@@ -185,11 +185,11 @@ ps = PorterStemmer()
 # show topic models
 def topic_model(topic):
     if topic == 'none':
-        model = gensim.models.LdaModel.load('Models\none_lda.model')
+        model = gensim.models.LdaModel.load('./Models/none_lda.model')
     elif topic == 'racism':
-        model = gensim.models.LdaModel.load('Models\'racism_lda.model')
+        model = gensim.models.LdaModel.load('./Models/racism_lda.model')
     elif topic == 'saxism':
-        model = gensim.models.LdaModel.load('Models\sexism_lda.model')
+        model = gensim.models.LdaModel.load('./Models/sexism_lda.model')
     return model
     
 
@@ -250,8 +250,8 @@ def main():
     
     # model inference
     correct_txt = correct_text(text)
-    tfidf = joblib.load('Models\tfidf_vectorizer.joblib')
-    model = joblib.load('Models\text_clf_model.joblib')
+    tfidf = joblib.load('.Models/tfidf_vectorizer.joblib')
+    model = joblib.load('.Models/text_clf_model.joblib')
     
     vect_text = tfidf.transform(correct_txt)
     arr = vect_text.toarray()[0].reshape(1,-1)
