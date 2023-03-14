@@ -14,6 +14,10 @@ You are provided with twitter_parsed_tweets: you have to perform a step-by-step 
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://cyberbullying-detection.streamlit.app/)
 
+### Published article on Analytics Vidhya:
+
+[Click Here](https://www.analyticsvidhya.com/blog/2023/03/detect-cyberbullying-using-topic-modeling-and-sentiment-analysis/)
+
 ### **Steps taken to solve the problem**
 
 1. Data loading and understanding to identify statistical properties of the dataset
@@ -32,3 +36,7 @@ You are provided with twitter_parsed_tweets: you have to perform a step-by-step 
 3. Spacy
 4. TextBlob
 5. Pandas, Matplotlib and Scikit-learn
+
+### Acknowledgement:
+
+The Machine Learning Company
