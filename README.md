@@ -14,6 +14,13 @@ You are provided with twitter_parsed_tweets: you have to perform a step-by-step 
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://cyberbullying-detection.streamlit.app/)
 
+### WebApp ScreenShot
+
+![image](https://user-images.githubusercontent.com/88608935/230604809-a4dea101-d93e-428a-a2f9-e4b749ae6265.png)
+
+![image](https://user-images.githubusercontent.com/88608935/230604890-6b479769-fab5-448d-a02b-8015d5416d1b.png)
+
+
 ### Published article on Analytics Vidhya:
 
 [Click Here](https://www.analyticsvidhya.com/blog/2023/03/detect-cyberbullying-using-topic-modeling-and-sentiment-analysis/)
